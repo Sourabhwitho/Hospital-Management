@@ -1,1 +1,1 @@
-# Customer-Management-Platform
+# Hospital-Management-Platform
