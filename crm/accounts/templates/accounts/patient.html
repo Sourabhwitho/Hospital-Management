@@ -1,0 +1,55 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<!-- <div class="col-md">
+		<div class="card card-body">
+			<h5>Patient:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_order' request.user.id %}">Book an Appointment</a> 
+		</div>
+	</div>  -->
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Name: {{patient.username}}</p>
+			<p>Email: {{patient.email}}</p>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Doctor</th>
+					<th>Day</th>
+					<th>Date</th>
+					<th>Update</th>
+					<th>Cancel</th>
+				</tr>
+
+				{% for order in appointments %}
+
+				<tr>
+					<td>{{order.Doctor}}</td>
+					<td>{{order.day}}</td>
+					<td>{{order.time_slot}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Cancel</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{%  extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+			<p>The Following Time Slots have been booked:-</p>
+            {% for appointment in appointments %}
+            <p>{{appointment.Doctor}} : {{appointment.time_slot}} - {{appointment.day}} </p>
+			{% endfor %}	
+				<a class="btn btn-warning" href="{% url 'create_order' request.user.id %}">Book a Slot</a>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

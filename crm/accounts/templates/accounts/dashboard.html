@@ -1,0 +1,66 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+{%  include 'accounts/status.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>Patients:</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>Patient</th>
+					<th>Email</th>
+					<th>Phone</th>
+				</tr>
+
+				{% for patient in patients %}
+					<tr>
+						<td><a class="btn btn-primary  btn-sm btn-info" href="{% url 'patient' patient.id %}">View</a> </td>
+						<td>{{patient.name}}</td>
+						<td>{{patient.email}}</td>
+						<td>{{patient.phone}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>UPCOMING APPOINTMENTS</h5>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Doctor</th>
+					<th>Day</th>
+					<th>Time</th>
+					<th>Update</th>
+					<th>Cancel</th>
+				</tr>
+
+				{% for order in appointments %}
+					<tr>
+						<td>{{order.Doctor}}</td>
+						<td>{{order.day}}</td>
+						<td>{{order.time_slot}}</td>
+						<td><a class="btn btn-primary  btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+						<td><a class="btn btn-primary  btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Cancel</a></td>
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
